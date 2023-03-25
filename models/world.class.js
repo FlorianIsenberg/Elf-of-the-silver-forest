@@ -21,16 +21,15 @@ class World {
       this.character.height
     );
 
-    this.enemies.forEach((orc) => {
+    this.enemies.forEach((enemy) => {
       this.ctx.drawImage(
-        this.orc.img,
-        this.orc.x,
-        this.orc.y,
-        this.orc.width,
-        this.orc.height
+        enemy.img,
+        enemy.x,
+        enemy.y,
+        enemy.width,
+        enemy.height
       );
     });
-
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
