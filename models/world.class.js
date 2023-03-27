@@ -1,6 +1,11 @@
 class World {
   character = new Character();
   enemies = [new Orc(), new Orc(), new Orc()];
+  backgroundObjects = [
+    new BackgroundObject(
+      "./img/bg/PNG/game_background_3/layers/battleground.png"
+    ),
+  ];
   canvas;
   ctx;
 
@@ -13,26 +18,18 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.drawImage(
-      this.character.img,
-      this.character.x,
-      this.character.y,
-      this.character.width,
-      this.character.height
-    );
-
+    this.addToMap(this.character);
     this.enemies.forEach((enemy) => {
-      this.ctx.drawImage(
-        enemy.img,
-        enemy.x,
-        enemy.y,
-        enemy.width,
-        enemy.height
-      );
+      this.addToMap(enemy);
     });
+
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  addToMap(mo) {
+    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
   }
 }
