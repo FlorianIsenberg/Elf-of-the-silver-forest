@@ -23,7 +23,7 @@ class Character extends MovableObject {
       let path = this.imagesWalkinElf[e];
       this.img = this.imageCache[path];
       this.currentImage++;
-    }, 600);
+    }, 1000 / 30);
   }
 
   jump() {}

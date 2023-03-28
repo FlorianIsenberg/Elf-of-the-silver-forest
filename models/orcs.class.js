@@ -13,13 +13,15 @@ class Orc extends MovableObject {
 
   constructor() {
     super().loadImage("../img/orc/_PNG/3_ORK/ORK_03_WALK_000.png");
-    this.loadImage(this.imagesWalkinOrc);
+    this.loadImages(this.imagesWalkinOrc);
     this.x = 200 + Math.random() * 400;
+    this.speed = 0.15 + Math.random() * 0.25;
 
     this.walkOrc();
   }
 
   walkOrc() {
+    this.moveLeft();
     setInterval(() => {
       let o = this.currentImage % this.imagesWalkinOrc.length;
       let path = this.imagesWalkinOrc[o];
