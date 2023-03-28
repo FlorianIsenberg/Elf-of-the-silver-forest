@@ -1,36 +1,11 @@
 class World {
   character = new Character();
-  enemies = [new Orc(), new Orc(), new Orc()];
-  backgroundObjects = [
-    new BackgroundObject(
-      "./img/bg/PNG/game_background_3/layers/battleground.png",
-      0,
-      0
-    ),
-    new BackgroundObject(
-      "./img/bg/PNG/game_background_3/layers/back_land.png",
-      0,
-      0
-    ),
-    new BackgroundObject(
-      "./img/bg/PNG/game_background_3/layers/ground_decor.png",
-      0,
-      0
-    ),
-    new BackgroundObject(
-      "./img/bg/PNG/game_background_3/layers/back_decor.png",
-      0,
-      0
-    ),
-    new BackgroundObject(
-      "./img/bg/PNG/game_background_3/layers/front_decor.png",
-      0,
-      0
-    ),
-  ];
+  enemies = level1.enemies;
+  backgroundObjects = level1.backgroundObjects;
   canvas;
   ctx;
   keyboard;
+  cameraX = -100;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -47,9 +22,13 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.ctx.translate(this.cameraX, 0);
+
     this.addObjectsToMap(this.backgroundObjects);
     this.addObjectsToMap(this.enemies);
     this.addToMap(this.character);
+
+    this.ctx.translate(-this.cameraX, 0);
 
     let self = this;
     requestAnimationFrame(function () {
