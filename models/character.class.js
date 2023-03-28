@@ -1,4 +1,5 @@
 class Character extends MovableObject {
+  speed = 10;
   imagesWalkinElf = [
     "../img/elf/_PNG/3/Elf_03__WALK_001.png",
     "../img/elf/_PNG/3/Elf_03__WALK_002.png",
@@ -10,6 +11,7 @@ class Character extends MovableObject {
     "../img/elf/_PNG/3/Elf_03__WALK_008.png",
     "../img/elf/_PNG/3/Elf_03__WALK_009.png",
   ];
+  world;
 
   constructor() {
     super().loadImage("../img/elf/_PNG/3/Elf_03__WALK_000.png");
@@ -19,10 +21,22 @@ class Character extends MovableObject {
 
   walkElf() {
     setInterval(() => {
-      let e = this.currentImage % this.imagesWalkinElf.length;
-      let path = this.imagesWalkinElf[e];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+      if (this.world.keyboard.right) {
+        this.x += this.speed;
+        this.otherDirection = false;
+      }
+      if (this.world.keyboard.left) {
+        this.x -= this.speed;
+        this.otherDirection = true;
+      }
+    }, 1000 / 60);
+    setInterval(() => {
+      if (this.world.keyboard.right || this.world.keyboard.left) {
+        let e = this.currentImage % this.imagesWalkinElf.length;
+        let path = this.imagesWalkinElf[e];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      }
     }, 1000 / 30);
   }
 

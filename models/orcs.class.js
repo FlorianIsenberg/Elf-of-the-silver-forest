@@ -11,6 +11,8 @@ class Orc extends MovableObject {
     "../img/orc/_PNG/3_ORK/ORK_03_WALK_009.png",
   ];
 
+  otherDirection = true;
+
   constructor() {
     super().loadImage("../img/orc/_PNG/3_ORK/ORK_03_WALK_000.png");
     this.loadImages(this.imagesWalkinOrc);
