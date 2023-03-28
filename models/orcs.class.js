@@ -31,6 +31,4 @@ class Orc extends MovableObject {
       this.currentImage++;
     }, 600);
   }
-
-  moveleft() {}
 }

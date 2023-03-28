@@ -21,11 +21,11 @@ class Character extends MovableObject {
 
   walkElf() {
     setInterval(() => {
-      if (this.world.keyboard.right) {
+      if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
         this.x += this.speed;
         this.otherDirection = false;
       }
-      if (this.world.keyboard.left) {
+      if (this.world.keyboard.left && this.x > -720) {
         this.x -= this.speed;
         this.otherDirection = true;
       }
