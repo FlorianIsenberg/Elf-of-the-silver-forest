@@ -1,6 +1,6 @@
 class Character extends MovableObject {
   speed = 10;
-  imagesWalkinElf = [
+  imagesWalkingElf = [
     "../img/elf/_PNG/3/Elf_03__WALK_001.png",
     "../img/elf/_PNG/3/Elf_03__WALK_002.png",
     "../img/elf/_PNG/3/Elf_03__WALK_003.png",
@@ -11,11 +11,26 @@ class Character extends MovableObject {
     "../img/elf/_PNG/3/Elf_03__WALK_008.png",
     "../img/elf/_PNG/3/Elf_03__WALK_009.png",
   ];
+
+  imagesJumpingElf = [
+    "../img/elf/_PNG/3/Elf_03__JUMP_000.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_001.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_002.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_003.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_004.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_005.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_006.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_007.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_008.png",
+    "../img/elf/_PNG/3/Elf_03__JUMP_009.png",
+  ];
+
   world;
 
   constructor() {
     super().loadImage("../img/elf/_PNG/3/Elf_03__WALK_000.png");
-    this.loadImages(this.imagesWalkinElf);
+    this.loadImages(this.imagesWalkingElf);
+    this.loadImages(this.imagesJumpingElf);
     this.applyGravity();
     this.walkElf();
   }
@@ -23,25 +38,31 @@ class Character extends MovableObject {
   walkElf() {
     setInterval(() => {
       if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
-        this.x += this.speed;
-        this.otherDirection = false;
+        this.moveRight();
       }
       if (this.world.keyboard.left && this.x > -720) {
-        this.x -= this.speed;
-        this.otherDirection = true;
+        this.moveLeft();
+      }
+
+      if (this.world.keyboard.space && !this.isAboveGround()) {
+        this.jump();
       }
 
       this.world.cameraX = -this.x;
     }, 1000 / 60);
+
     setInterval(() => {
-      if (this.world.keyboard.right || this.world.keyboard.left) {
-        let e = this.currentImage % this.imagesWalkinElf.length;
-        let path = this.imagesWalkinElf[e];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+      if (this.isAboveGround() || this.speedY > 0) {
+        this.playAnimation(this.imagesJumpingElf);
+      } else {
+        if (this.world.keyboard.right || this.world.keyboard.left) {
+          this.playAnimation(this.imagesWalkingElf);
+        }
       }
     }, 1000 / 30);
   }
 
-  jump() {}
+  jump() {
+    this.speedY = 22;
+  }
 }

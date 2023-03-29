@@ -11,7 +11,7 @@ class Endboss extends MovableObject {
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_008.png",
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_009.png",
   ];
-  otherDirection = true;
+
   height = 196.875 * 3.5;
   width = 375 * 3.5;
 
@@ -26,10 +26,7 @@ class Endboss extends MovableObject {
   walkEndboss() {
     this.moveLeft();
     setInterval(() => {
-      let o = this.currentImage % this.imagesWalkinBoss.length;
-      let path = this.imagesWalkinBoss[o];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+      this.playAnimation(this.imagesWalkinBoss);
     }, 1000 / 20);
   }
 }

@@ -13,7 +13,7 @@ class MovableObject {
 
   applyGravity() {
     setInterval(() => {
-      if (this.isAboveGround()) {
+      if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
       }
@@ -29,8 +29,20 @@ class MovableObject {
     this.img.src = path;
   }
 
-  loadImages(elf) {
-    elf.forEach((path) => {
+  draw(ctx) {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  drawFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "blue";
+    ctx.rect(this.x, this.y, this.width, this.height);
+    ctx.stroke();
+  }
+
+  loadImages(charr) {
+    charr.forEach((path) => {
       let img = new Image();
       img.src = path;
       this.imageCache[path] = img;
@@ -38,11 +50,18 @@ class MovableObject {
   }
 
   moveRight() {
-    console.log("moving right");
+    this.x += this.speed;
+    this.otherDirection = false;
   }
   moveLeft() {
-    setInterval(() => {
-      this.x -= this.speed;
-    }, 1000 / 60);
+    this.x -= this.speed;
+    this.otherDirection = true;
+  }
+
+  playAnimation(play) {
+    let e = this.currentImage % play.length;
+    let path = play[e];
+    this.img = this.imageCache[path];
+    this.currentImage++;
   }
 }

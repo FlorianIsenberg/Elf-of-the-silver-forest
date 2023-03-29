@@ -1,5 +1,5 @@
 class Orc extends MovableObject {
-  imagesWalkinOrc = [
+  imagesWalkingOrc = [
     "../img/orc/_PNG/3_ORK/ORK_03_WALK_001.png",
     "../img/orc/_PNG/3_ORK/ORK_03_WALK_002.png",
     "../img/orc/_PNG/3_ORK/ORK_03_WALK_003.png",
@@ -11,11 +11,9 @@ class Orc extends MovableObject {
     "../img/orc/_PNG/3_ORK/ORK_03_WALK_009.png",
   ];
 
-  otherDirection = true;
-
   constructor() {
     super().loadImage("../img/orc/_PNG/3_ORK/ORK_03_WALK_000.png");
-    this.loadImages(this.imagesWalkinOrc);
+    this.loadImages(this.imagesWalkingOrc);
     this.x = 200 + Math.random() * 400;
     this.speed = 0.15 + Math.random() * 0.25;
 
@@ -23,12 +21,12 @@ class Orc extends MovableObject {
   }
 
   walkOrc() {
-    this.moveLeft();
     setInterval(() => {
-      let o = this.currentImage % this.imagesWalkinOrc.length;
-      let path = this.imagesWalkinOrc[o];
-      this.img = this.imageCache[path];
-      this.currentImage++;
-    }, 600);
+      this.moveLeft();
+    }, 1000 / 60);
+
+    setInterval(() => {
+      this.playAnimation(this.imagesWalkingOrc);
+    }, 1000 / 20);
   }
 }
