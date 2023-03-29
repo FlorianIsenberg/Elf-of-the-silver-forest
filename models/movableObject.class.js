@@ -17,11 +17,11 @@ class MovableObject {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
       }
-    }, 1000 / 25);
+    }, 1000 / 30);
   }
 
   isAboveGround() {
-    return this.y < 80;
+    return this.y < 100;
   }
 
   loadImage(path) {
@@ -34,11 +34,32 @@ class MovableObject {
   }
 
   drawFrame(ctx) {
-    ctx.beginPath();
-    ctx.lineWidth = "5";
-    ctx.strokeStyle = "blue";
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.stroke();
+    if (
+      this instanceof Character ||
+      this instanceof Orc ||
+      this instanceof Endboss
+    ) {
+      ctx.beginPath();
+      ctx.lineWidth = "5";
+      ctx.strokeStyle = "blue";
+      ctx.rect(
+        this.x + this.frameX,
+        this.y + this.frameY,
+        this.width + this.frameW,
+        this.height + this.frameH
+      );
+      ctx.stroke();
+    }
+  }
+
+  isColliding(obj) {
+    return (
+      this.x + this.frameX + (this.width + this.frameW) >= obj.x + obj.frameX &&
+      this.y + this.frameY + (this.height + this.frameH) >=
+        obj.y + obj.frameY &&
+      this.x + this.frameX <= obj.x + obj.frameX &&
+      this.y + this.frameY <= obj.y + obj.frameY + (obj.height + obj.frameH)
+    );
   }
 
   loadImages(charr) {

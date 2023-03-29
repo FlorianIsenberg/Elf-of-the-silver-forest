@@ -1,4 +1,9 @@
 class Endboss extends MovableObject {
+  frameX = 470;
+  frameY = 290;
+  frameW = -830;
+  frameH = -360;
+
   imagesWalkinBoss = [
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_000.png",
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_001.png",
@@ -18,15 +23,18 @@ class Endboss extends MovableObject {
   constructor() {
     super().loadImage(this.imagesWalkinBoss[0]);
     this.loadImages(this.imagesWalkinBoss);
-    this.x = 2050;
+    this.speed = 0.15 + Math.random() * 0.15;
+    this.x = 1940;
     this.y = -270;
     this.walkEndboss();
   }
 
   walkEndboss() {
-    this.moveLeft();
+    setInterval(() => {
+      this.moveLeft();
+    }, 1000 / 60);
     setInterval(() => {
       this.playAnimation(this.imagesWalkinBoss);
-    }, 1000 / 20);
+    }, 1000 / 30);
   }
 }

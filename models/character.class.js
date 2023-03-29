@@ -1,15 +1,21 @@
 class Character extends MovableObject {
+  frameX = 210;
+  frameY = 80;
+  frameW = -420;
+  frameH = -130;
   speed = 10;
-  imagesWalkingElf = [
-    "../img/elf/_PNG/3/Elf_03__WALK_001.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_002.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_003.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_004.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_005.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_006.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_007.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_008.png",
-    "../img/elf/_PNG/3/Elf_03__WALK_009.png",
+  y = 0;
+
+  imagesRunElf = [
+    "../img/elf/_PNG/3/Elf_03__RUN_001.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_002.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_003.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_004.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_005.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_006.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_007.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_008.png",
+    "../img/elf/_PNG/3/Elf_03__RUN_009.png",
   ];
 
   imagesJumpingElf = [
@@ -25,12 +31,26 @@ class Character extends MovableObject {
     "../img/elf/_PNG/3/Elf_03__JUMP_009.png",
   ];
 
+  imagesIdleElf = [
+    "img/elf/_PNG/3/Elf_03__IDLE_000.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_001.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_002.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_003.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_004.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_005.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_006.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_007.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_008.png",
+    "img/elf/_PNG/3/Elf_03__IDLE_009.png",
+  ];
+
   world;
 
   constructor() {
-    super().loadImage("../img/elf/_PNG/3/Elf_03__WALK_000.png");
-    this.loadImages(this.imagesWalkingElf);
+    super().loadImage("img/elf/_PNG/3/Elf_03__IDLE_000.png");
+    this.loadImages(this.imagesRunElf);
     this.loadImages(this.imagesJumpingElf);
+    this.loadImages(this.imagesIdleElf);
     this.applyGravity();
     this.walkElf();
   }
@@ -49,20 +69,22 @@ class Character extends MovableObject {
       }
 
       this.world.cameraX = -this.x;
-    }, 1000 / 60);
+    }, 1000 / 20);
 
     setInterval(() => {
+      this.playAnimation(this.imagesIdleElf);
+
       if (this.isAboveGround() || this.speedY > 0) {
         this.playAnimation(this.imagesJumpingElf);
       } else {
         if (this.world.keyboard.right || this.world.keyboard.left) {
-          this.playAnimation(this.imagesWalkingElf);
+          this.playAnimation(this.imagesRunElf);
         }
       }
-    }, 1000 / 30);
+    }, 1000 / 15);
   }
 
   jump() {
-    this.speedY = 22;
+    this.speedY = 25;
   }
 }
