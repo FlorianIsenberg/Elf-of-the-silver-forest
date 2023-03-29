@@ -43,6 +43,30 @@ class Character extends MovableObject {
     "img/elf/_PNG/3/Elf_03__IDLE_008.png",
     "img/elf/_PNG/3/Elf_03__IDLE_009.png",
   ];
+  imagesDeadElf = [
+    "img/elf/_PNG/3/Elf_03__DIE_000.png",
+    "img/elf/_PNG/3/Elf_03__DIE_001.png",
+    "img/elf/_PNG/3/Elf_03__DIE_002.png",
+    "img/elf/_PNG/3/Elf_03__DIE_003.png",
+    "img/elf/_PNG/3/Elf_03__DIE_004.png",
+    "img/elf/_PNG/3/Elf_03__DIE_005.png",
+    "img/elf/_PNG/3/Elf_03__DIE_006.png",
+    "img/elf/_PNG/3/Elf_03__DIE_007.png",
+    "img/elf/_PNG/3/Elf_03__DIE_008.png",
+    "img/elf/_PNG/3/Elf_03__DIE_009.png",
+  ];
+  imagesHurtElf = [
+    "img/elf/_PNG/3/Elf_03__HURT_000.png",
+    "img/elf/_PNG/3/Elf_03__HURT_001.png",
+    "img/elf/_PNG/3/Elf_03__HURT_002.png",
+    "img/elf/_PNG/3/Elf_03__HURT_003.png",
+    "img/elf/_PNG/3/Elf_03__HURT_004.png",
+    "img/elf/_PNG/3/Elf_03__HURT_005.png",
+    "img/elf/_PNG/3/Elf_03__HURT_006.png",
+    "img/elf/_PNG/3/Elf_03__HURT_007.png",
+    "img/elf/_PNG/3/Elf_03__HURT_008.png",
+    "img/elf/_PNG/3/Elf_03__HURT_009.png",
+  ];
 
   world;
 
@@ -51,6 +75,8 @@ class Character extends MovableObject {
     this.loadImages(this.imagesRunElf);
     this.loadImages(this.imagesJumpingElf);
     this.loadImages(this.imagesIdleElf);
+    this.loadImages(this.imagesDeadElf);
+    this.loadImages(this.imagesHurtElf);
     this.applyGravity();
     this.walkElf();
   }
@@ -73,6 +99,12 @@ class Character extends MovableObject {
 
     setInterval(() => {
       this.playAnimation(this.imagesIdleElf);
+
+      if (this.isDead()) {
+        this.playAnimation(this.imagesDeadElf);
+      } else if (this.isHurt()) {
+        this.playAnimation(this.imagesHurtElf);
+      }
 
       if (this.isAboveGround() || this.speedY > 0) {
         this.playAnimation(this.imagesJumpingElf);
