@@ -13,14 +13,14 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisisons();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.character.world = this;
   }
 
-  checkCollisisons() {
+  checkCollisions() {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
@@ -36,9 +36,11 @@ class World {
     this.ctx.translate(this.cameraX, 0);
 
     this.addObjectsToMap(this.level.backgroundObjects);
-    this.addObjectsToMap(this.statusBar);
-    this.addObjectsToMap(this.level.enemies);
+    this.ctx.translate(-this.cameraX, 0);
+    this.addToMap(this.statusBar);
+    this.ctx.translate(this.cameraX, 0);
     this.addToMap(this.character);
+    this.addObjectsToMap(this.level.enemies);
 
     this.ctx.translate(-this.cameraX, 0);
 

@@ -1,5 +1,5 @@
 class Statusbar extends DrawableObject {
-  imagesHPBar = [
+  imagesHpBar = [
     "img/HP_BAR/HP_bar_00.png",
     "img/HP_BAR/HP_bar_10.png",
     "img/HP_BAR/HP_bar_20.png",
@@ -17,40 +17,40 @@ class Statusbar extends DrawableObject {
 
   constructor() {
     super();
-    this.loadImages(this.imagesHPBar);
-    this.x = 100;
-    this.y = 100;
-    this.percentage(100);
+    this.loadImages(this.imagesHpBar);
+    this.setPercentage(this.percentage);
   }
 
-  setPercentage() {
-    this.percentage = this.percentage;
-    let path = this.imagesHPBar[this.resolveImageIndex()];
+  setPercentage(percentage) {
+    this.percentage = percentage;
+    let path = this.imagesHpBar[this.resolveImageIndex()];
+    this.x = 5;
+    this.y = 5;
+    this.width = 300;
+    this.height = 30;
     this.img = this.imageCache[path];
   }
 
   resolveImageIndex() {
     if (this.percentage == 100) {
-      return 11;
-    } else if (this.percentage > 90) {
       return 10;
-    } else if (this.percentage > 80) {
+    } else if (this.percentage > 90) {
       return 9;
-    } else if (this.percentage > 70) {
+    } else if (this.percentage > 80) {
       return 8;
-    } else if (this.percentage > 60) {
+    } else if (this.percentage > 70) {
       return 7;
-    } else if (this.percentage > 50) {
+    } else if (this.percentage > 60) {
       return 6;
-    } else if (this.percentage > 40) {
+    } else if (this.percentage > 50) {
       return 5;
-    } else if (this.percentage > 30) {
+    } else if (this.percentage > 40) {
       return 4;
-    } else if (this.percentage > 20) {
+    } else if (this.percentage > 30) {
       return 3;
-    } else if (this.percentage > 10) {
+    } else if (this.percentage > 20) {
       return 2;
-    } else if (this.percentage > 0) {
+    } else if (this.percentage > 10) {
       return 1;
     } else {
       return 0;

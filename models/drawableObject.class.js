@@ -4,7 +4,8 @@ class DrawableObject {
   y = 80;
   height = 196.875 * 1.5;
   width = 375 * 1.5;
-  imageCache = [];
+  imageCache = {};
+  currentImage = 0;
 
   loadImage(path) {
     this.img = new Image();
@@ -13,14 +14,6 @@ class DrawableObject {
 
   draw(ctx) {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-  }
-
-  loadImages(charr) {
-    charr.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
-    });
   }
 
   drawFrame(ctx) {
@@ -40,5 +33,13 @@ class DrawableObject {
       );
       ctx.stroke();
     }
+  }
+
+  loadImages(charr) {
+    charr.forEach((path) => {
+      let img = new Image();
+      img.src = path;
+      this.imageCache[path] = img;
+    });
   }
 }
