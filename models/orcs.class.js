@@ -15,6 +15,19 @@ class Orc extends MovableObject {
     "../img/orc/_PNG/3_ORK/ORK_03_WALK_009.png",
   ];
 
+  imagesDieOrc = [
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_000.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_001.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_002.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_003.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_004.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_005.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_006.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_007.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_008.png",
+    "../img/orc/_PNG/3_ORK/ORK_03_DIE_009.png",
+  ];
+
   constructor() {
     super().loadImage("../img/orc/_PNG/3_ORK/ORK_03_WALK_000.png");
     this.loadImages(this.imagesWalkingOrc);

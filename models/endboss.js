@@ -16,6 +16,30 @@ class Endboss extends MovableObject {
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_008.png",
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_009.png",
   ];
+  imagesAttackBoss = [
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_000.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_001.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_002.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_003.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_004.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_005.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_006.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_007.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_008.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_009.png",
+  ];
+  imagesDieBoss = [
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_000.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_001.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_002.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_003.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_004.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_005.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_006.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_007.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_008.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_DIE_009.png",
+  ];
 
   height = 196.875 * 3.5;
   width = 375 * 3.5;
@@ -23,6 +47,8 @@ class Endboss extends MovableObject {
   constructor() {
     super().loadImage(this.imagesWalkinBoss[0]);
     this.loadImages(this.imagesWalkinBoss);
+    this.loadImages(this.imagesAttackBoss);
+    this.loadImages(this.imagesDieBoss);
     this.speed = 0.15 + Math.random() * 0.15;
     this.x = 1940;
     this.y = -270;
@@ -38,3 +64,5 @@ class Endboss extends MovableObject {
     }, 1000 / 30);
   }
 }
+
+attack();
