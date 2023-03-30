@@ -5,6 +5,7 @@ class World {
   ctx;
   keyboard;
   cameraX = -100;
+  statusBar = new Statusbar();
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -35,6 +36,7 @@ class World {
     this.ctx.translate(this.cameraX, 0);
 
     this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.statusBar);
     this.addObjectsToMap(this.level.enemies);
     this.addToMap(this.character);
 
