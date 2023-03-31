@@ -6,6 +6,7 @@ class World {
   keyboard;
   cameraX = -100;
   statusBar = new Statusbar();
+  fireball = [new Fireball()];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -14,10 +15,25 @@ class World {
     this.draw();
     this.setWorld();
     this.checkCollisions();
+    this.run();
   }
 
   setWorld() {
     this.character.world = this;
+  }
+
+  run() {
+    setInterval(() => {
+      this.checkCollisions();
+      this.checkthrowObjects();
+    }, 200);
+  }
+
+  checkthrowObjects() {
+    if (this.keyboard.specialAttack) {
+      let fireball = new Fireball(this.character.x, this.character.y);
+      this.fireball.push(fireball);
+    }
   }
 
   checkCollisions() {
@@ -46,7 +62,7 @@ class World {
     this.ctx.translate(this.cameraX, 0);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
-
+    this.addObjectsToMap(this.fireball);
     this.ctx.translate(-this.cameraX, 0);
 
     let self = this;

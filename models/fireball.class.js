@@ -40,15 +40,25 @@ class Fireball extends MovableObject {
     "img/Fireballs/fire38.png",
     "img/Fireballs/fire39.png",
   ];
-  speedY = 30;
-  speedX = 20;
-  width = 100;
-  height = 100;
+
   damage = 30;
 
   constructor() {
-    super();
-    this.loadImages(this.imagesFireball);
+    super().loadImage(this.imagesFireball[0]);
+    this.x = 100;
+    this.y = 100;
+    this.width = 100;
+    this.height = 100;
+    this.trow(200, 150);
+  }
+
+  trow(x, y) {
+    this.x = x;
+    this.y = y;
+    this.speedX = 30;
+    setInterval(() => {
+      this.x += 10;
+    }, 50);
   }
 
   specialAttack() {
