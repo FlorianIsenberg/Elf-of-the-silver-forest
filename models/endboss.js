@@ -1,8 +1,10 @@
 class Endboss extends MovableObject {
-  frameX = 470;
-  frameY = 290;
-  frameW = -830;
-  frameH = -360;
+  offset = {
+    top: 290,
+    right: 455,
+    bottom: 50,
+    left: 365,
+  };
 
   imagesWalkinBoss = [
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_000.png",
@@ -28,7 +30,7 @@ class Endboss extends MovableObject {
     "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_008.png",
     "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_009.png",
   ];
-  imagesDieBoss = [
+  imagesDie = [
     "../img/orc/_PNG/1_ORK/ORK_01_DIE_000.png",
     "../img/orc/_PNG/1_ORK/ORK_01_DIE_001.png",
     "../img/orc/_PNG/1_ORK/ORK_01_DIE_002.png",
@@ -49,7 +51,7 @@ class Endboss extends MovableObject {
     super().loadImage(this.imagesWalkinBoss[0]);
     this.loadImages(this.imagesWalkinBoss);
     this.loadImages(this.imagesAttackBoss);
-    this.loadImages(this.imagesDieBoss);
+    this.loadImages(this.imagesDie);
     this.speed = 0.15 + Math.random() * 0.15;
     this.x = 1940;
     this.y = -270;
@@ -67,7 +69,7 @@ class Endboss extends MovableObject {
 
   attacAnimation() {
     if (this.isDead()) {
-      this.objectAnimation(this.imagesDieBoss);
+      this.objectAnimation(this.imagesDie);
     } else {
       setInterval(() => {
         let moveInterval = setInterval(() => {

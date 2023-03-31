@@ -5,6 +5,12 @@ class MovableObject extends DrawableObject {
   acceleration = 2;
   energy = 100;
   lastHit = 0;
+  offset = {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  };
 
   applyGravity() {
     setInterval(() => {
@@ -21,11 +27,10 @@ class MovableObject extends DrawableObject {
 
   isColliding(obj) {
     return (
-      this.x + this.frameX + (this.width + this.frameW) >= obj.x + obj.frameX &&
-      this.y + this.frameY + (this.height + this.frameH) >=
-        obj.y + obj.frameY &&
-      this.x + this.frameX <= obj.x + obj.frameX &&
-      this.y + this.frameY <= obj.y + obj.frameY + (obj.height + obj.frameH)
+      this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
+      this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&
+      this.x + this.offset.left < obj.x + obj.width - obj.offset.right &&
+      this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
     );
   }
 
@@ -62,5 +67,16 @@ class MovableObject extends DrawableObject {
     let path = play[e];
     this.img = this.imageCache[path];
     this.currentImage++;
+  }
+
+  die() {
+    this.damage = 0;
+    this.currentImage = 0;
+    let animationInterval = setInterval(() => {
+      this.playAnimation(this.imagesDie);
+    }, 100);
+    setTimeout(() => {
+      clearInterval(animationInterval);
+    }, 950);
   }
 }

@@ -1,8 +1,10 @@
 class Character extends MovableObject {
-  frameX = 210;
-  frameY = 80;
-  frameW = -420;
-  frameH = -130;
+  offset = {
+    top: 90,
+    right: 220,
+    bottom: 50,
+    left: 210,
+  };
   speed = 10;
   y = 0;
   damage = 10;
@@ -44,7 +46,7 @@ class Character extends MovableObject {
     "img/elf/_PNG/3/Elf_03__IDLE_008.png",
     "img/elf/_PNG/3/Elf_03__IDLE_009.png",
   ];
-  imagesDeadElf = [
+  imagesDie = [
     "img/elf/_PNG/3/Elf_03__DIE_000.png",
     "img/elf/_PNG/3/Elf_03__DIE_001.png",
     "img/elf/_PNG/3/Elf_03__DIE_002.png",
@@ -76,7 +78,7 @@ class Character extends MovableObject {
     this.loadImages(this.imagesRunElf);
     this.loadImages(this.imagesJumpingElf);
     this.loadImages(this.imagesIdleElf);
-    this.loadImages(this.imagesDeadElf);
+    this.loadImages(this.imagesDie);
     this.loadImages(this.imagesHurtElf);
     this.applyGravity();
     this.walkElf();
@@ -95,18 +97,15 @@ class Character extends MovableObject {
         this.jump();
       }
 
-      if (this.world.keyboard.specialAttack) {
-        this.specialAttack();
-      }
-
       this.world.cameraX = -this.x;
     }, 1000 / 20);
 
-    setInterval(() => {
+    let animation = setInterval(() => {
       this.playAnimation(this.imagesIdleElf);
 
       if (this.isDead()) {
-        this.playAnimation(this.imagesDeadElf);
+        clearInterval(animation);
+        this.die();
       } else if (this.isHurt()) {
         this.playAnimation(this.imagesHurtElf);
       }

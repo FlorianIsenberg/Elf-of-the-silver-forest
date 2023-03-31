@@ -23,14 +23,21 @@ class DrawableObject {
       this instanceof Endboss
     ) {
       ctx.beginPath();
-      ctx.lineWidth = "5";
+      ctx.lineWidth = "1";
       ctx.strokeStyle = "blue";
+      let drawX;
+      if (this.otherDirection) {
+        drawX = this.x + this.offset.right;
+      } else {
+        drawX = this.x + this.offset.left;
+      }
       ctx.rect(
-        this.x + this.frameX,
-        this.y + this.frameY,
-        this.width + this.frameW,
-        this.height + this.frameH
+        drawX,
+        this.y + this.offset.top,
+        this.width - this.offset.right - this.offset.left,
+        this.height - this.offset.top - this.offset.bottom
       );
+
       ctx.stroke();
     }
   }
