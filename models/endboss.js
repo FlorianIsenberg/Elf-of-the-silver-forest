@@ -17,16 +17,16 @@ class Endboss extends MovableObject {
     "../img/orc/_PNG/1_ORK/ORK_01_WALK_009.png",
   ];
   imagesAttackBoss = [
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_000.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_001.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_002.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_003.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_004.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_005.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_006.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_007.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_008.png",
-    "../img/orc/_PNG/1_ORK/ORK_01_ATTACK_009.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_000.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_001.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_002.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_003.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_004.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_005.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_006.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_007.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_008.png",
+    "../img/orc/_PNG/1_ORK/ORK_01_ATTAK_009.png",
   ];
   imagesDieBoss = [
     "../img/orc/_PNG/1_ORK/ORK_01_DIE_000.png",
@@ -43,6 +43,7 @@ class Endboss extends MovableObject {
 
   height = 196.875 * 3.5;
   width = 375 * 3.5;
+  energy = 50;
 
   constructor() {
     super().loadImage(this.imagesWalkinBoss[0]);
@@ -63,6 +64,28 @@ class Endboss extends MovableObject {
       this.playAnimation(this.imagesWalkinBoss);
     }, 1000 / 30);
   }
-}
 
-attack();
+  attacAnimation() {
+    if (this.isDead()) {
+      this.objectAnimation(this.imagesDieBoss);
+    } else {
+      setInterval(() => {
+        let moveInterval = setInterval(() => {
+          this.moveLeft();
+        }, 1000 / 60);
+        setTimeout(() => {
+          clearInterval(moveInterval);
+          clearInterval(animationWalkInterval);
+          let animationWalkInterval = setInterval(() => {
+            this.objectAnimation(this.imagesAttackBoss);
+          }, 1000 / 20);
+          this.damage = 40;
+          setTimeout(() => {
+            clearInterval(animationAttackInterval);
+            this.damage = 5;
+          }, 2000);
+        }, 4000);
+      }, 6000);
+    }
+  }
+}

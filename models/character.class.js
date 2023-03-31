@@ -5,6 +5,7 @@ class Character extends MovableObject {
   frameH = -130;
   speed = 10;
   y = 0;
+  damage = 10;
 
   imagesRunElf = [
     "../img/elf/_PNG/3/Elf_03__RUN_001.png",
@@ -92,6 +93,10 @@ class Character extends MovableObject {
 
       if (this.world.keyboard.space && !this.isAboveGround()) {
         this.jump();
+      }
+
+      if (this.world.keyboard.specialAttack) {
+        this.specialAttack();
       }
 
       this.world.cameraX = -this.x;
