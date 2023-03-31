@@ -1,69 +1,75 @@
 class Fireball extends MovableObject {
   imagesFireball = [
-    "img/Fireballs/fire1.png",
-    "img/Fireballs/fire2.png",
-    "img/Fireballs/fire3.png",
-    "img/Fireballs/fire4.png",
-    "img/Fireballs/fire5.png",
-    "img/Fireballs/fire6.png",
-    "img/Fireballs/fire7.png",
-    "img/Fireballs/fire8.png",
-    "img/Fireballs/fire9.png",
-    "img/Fireballs/fire10.png",
-    "img/Fireballs/fire11.png",
-    "img/Fireballs/fire12.png",
-    "img/Fireballs/fire13.png",
-    "img/Fireballs/fire14.png",
-    "img/Fireballs/fire15.png",
-    "img/Fireballs/fire16.png",
-    "img/Fireballs/fire17.png",
-    "img/Fireballs/fire18.png",
-    "img/Fireballs/fire19.png",
-    "img/Fireballs/fire20.png",
-    "img/Fireballs/fire21.png",
-    "img/Fireballs/fire22.png",
-    "img/Fireballs/fire23.png",
-    "img/Fireballs/fire24.png",
-    "img/Fireballs/fire25.png",
-    "img/Fireballs/fire26.png",
-    "img/Fireballs/fire27.png",
-    "img/Fireballs/fire28.png",
-    "img/Fireballs/fire29.png",
-    "img/Fireballs/fire30.png",
-    "img/Fireballs/fire31.png",
-    "img/Fireballs/fire32.png",
-    "img/Fireballs/fire33.png",
-    "img/Fireballs/fire34.png",
-    "img/Fireballs/fire35.png",
-    "img/Fireballs/fire36.png",
-    "img/Fireballs/fire37.png",
-    "img/Fireballs/fire38.png",
-    "img/Fireballs/fire39.png",
+    "img/Fireballs/1.png",
+    "img/Fireballs/2.png",
+    "img/Fireballs/3.png",
+    "img/Fireballs/4.png",
+    "img/Fireballs/5.png",
+    "img/Fireballs/6.png",
+    "img/Fireballs/7.png",
+    "img/Fireballs/8.png",
+    "img/Fireballs/9.png",
+    "img/Fireballs/10.png",
+    "img/Fireballs/11.png",
+    "img/Fireballs/12.png",
+    "img/Fireballs/13.png",
+    "img/Fireballs/14.png",
+    "img/Fireballs/15.png",
+    "img/Fireballs/16.png",
+    "img/Fireballs/17.png",
+    "img/Fireballs/18.png",
+    "img/Fireballs/19.png",
+    "img/Fireballs/20.png",
+    "img/Fireballs/21.png",
+    "img/Fireballs/22.png",
+    "img/Fireballs/23.png",
+    "img/Fireballs/24.png",
+    "img/Fireballs/25.png",
+    "img/Fireballs/26.png",
+    "img/Fireballs/27.png",
+    "img/Fireballs/28.png",
+    "img/Fireballs/29.png",
+    "img/Fireballs/30.png",
+    "img/Fireballs/31.png",
+    "img/Fireballs/32.png",
+    "img/Fireballs/33.png",
+    "img/Fireballs/34.png",
+    "img/Fireballs/35.png",
+    "img/Fireballs/36.png",
+    "img/Fireballs/37.png",
+    "img/Fireballs/38.png",
+    "img/Fireballs/39.png",
   ];
+  damage = 20;
 
-  damage = 30;
-
-  constructor() {
+  constructor(x, y) {
     super().loadImage(this.imagesFireball[0]);
-    this.x = 100;
-    this.y = 100;
-    this.width = 100;
-    this.height = 100;
-    this.trow(200, 150);
+    this.loadImages(this.imagesFireball);
+    this.x = x + 100;
+    this.y = y - 70;
+    this.width = 500;
+    this.height = 500;
+    this.throw();
+    this.specialAttack();
   }
 
-  trow(x, y) {
-    this.x = x;
-    this.y = y;
+  throw(x, y) {
     this.speedX = 30;
-    setInterval(() => {
+    let fireballSpeed = setInterval(() => {
       this.x += 10;
     }, 50);
+    setTimeout(() => {
+      clearInterval(fireballSpeed);
+      this.y = 500;
+    }, 1333);
   }
 
   specialAttack() {
-    setInterval(() => {
+    let attack = setInterval(() => {
       this.playAnimation(this.imagesFireball);
     }, 1000 / 30);
+    setTimeout(() => {
+      clearInterval(attack);
+    }, 1333);
   }
 }

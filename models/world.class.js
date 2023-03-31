@@ -6,7 +6,7 @@ class World {
   keyboard;
   cameraX = -100;
   statusBar = new Statusbar();
-  fireball = [new Fireball()];
+  fireball = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -47,6 +47,11 @@ class World {
           enemy.hit(this.character);
           console.log(enemy.energy);
         }
+        this.fireball.forEach((fireball) => {
+          if (enemy.isColliding(fireball)) {
+            enemy.hit(fireball);
+          }
+        });
       });
     }, 200);
   }
