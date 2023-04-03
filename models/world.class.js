@@ -27,7 +27,30 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkthrowObjects();
-    }, 200);
+    }, 100);
+  }
+
+  checkThrowObjects() {
+    if (this.keyboard.ENTER && this.elf.mana > 30 && !this.cooldown()) {
+      let attack = new Fireball(this.elf.x, this.elf.y);
+      this.throwableObject.push(attack);
+      this.elf.mana -= 30;
+      this.manaBar.setPercentage(this.elf.mana);
+      this.lastAttack = new Date().getTime();
+      setTimeout(() => {
+        this.throwableObject.splice(-1);
+      }, 1500);
+    }
+    if (this.keyboard.SPACE && this.elf.mana >= 5 && !this.cooldown()) {
+      let attack = new Flash(this.elf.x, this.elf.y);
+      this.throwableObject.push(attack);
+      this.elf.mana -= 5;
+      this.manaBar.setPercentage(this.elf.mana);
+      this.lastAttack = new Date().getTime();
+      setTimeout(() => {
+        this.throwableObject.splice(-1);
+      }, 1000);
+    }
   }
 
   checkthrowObjects() {
@@ -38,28 +61,53 @@ class World {
   }
 
   checkCollisions() {
-    setInterval(() => {
-      this.level.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-          this.character.hit(enemy);
-          this.statusBar.setPercentage(this.character.energy);
+    this.collisionOrcs();
+    this.collisionEndboss();
+    this.collisionTank();
+  }
+
+  collisionOrcs() {
+    this.level.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy)) {
+        this.character.hit(enemy);
+        this.statusBar.setPercentage(this.character.energy);
+      }
+      this.fireball.forEach((attack) => {
+        if (enemy.isColliding(attack)) {
+          enemy.hit(attack);
+          attack.hit(enemy);
         }
-        if (enemy.isColliding(this.character)) {
-          enemy.hit(this.character);
-          console.log(enemy.energy);
-        }
-        this.fireball.forEach((fireball) => {
-          if (enemy.isColliding(fireball)) {
-            enemy.hit(fireball);
-          }
-        });
       });
-    }, 200);
+    });
+  }
+  collisionEndboss() {
+    this.level.endboss.forEach((endboss) => {
+      if (this.character.isColliding(endboss)) {
+        this.character.hit(endboss);
+        this.statusBar.setPercentage(this.character.energy);
+      }
+      this.fireball.forEach((attack) => {
+        if (endboss.isColliding(attack)) {
+          endboss.hit(attack);
+          attack.hit(endboss);
+        }
+      });
+    });
+  }
+
+  collisionTank() {
+    this.level.tank.forEach((tank) => {
+      if (this.character.isColliding(tank)) {
+        this.character.collect(tank.mana);
+        tank.collect();
+        this.level.tank.splice(this.level.tank.indexOf(tank), 1);
+        this.manaBar.setPercentage(this.character.mana);
+      }
+    });
   }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.cameraX, 0);
 
     this.addObjectsToMap(this.level.backgroundObjects);
@@ -67,9 +115,12 @@ class World {
     this.addToMap(this.statusBar);
     this.addToMap(this.manaBar);
     this.ctx.translate(this.cameraX, 0);
+    this.addObjectsToMap(this.level.tank);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.fireball);
+
     this.ctx.translate(-this.cameraX, 0);
 
     let self = this;

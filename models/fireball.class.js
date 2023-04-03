@@ -41,6 +41,7 @@ class Fireball extends MovableObject {
     "img/Fireballs/39.png",
   ];
   damage = 20;
+  energy = 16;
 
   constructor(x, y) {
     super().loadImage(this.imagesFireball[0]);

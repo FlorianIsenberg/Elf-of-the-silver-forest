@@ -6,7 +6,7 @@ class Orc extends MovableObject {
     bottom: 30,
   };
   energy = 40;
-  damage = 10;
+  damage = 8;
 
   imagesWalkingOrc = [
     "../img/orc/_PNG/3_ORK/ORK_03_WALK_001.png",
@@ -38,7 +38,7 @@ class Orc extends MovableObject {
     this.loadImages(this.imagesWalkingOrc);
     this.loadImages(this.imagesDie);
 
-    this.x = 200 + Math.random() * 400;
+    this.x = 250 + Math.random() * 2000;
     this.speed = 0.15 + Math.random() * 0.25;
 
     this.walkOrc();

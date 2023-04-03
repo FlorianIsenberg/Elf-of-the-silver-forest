@@ -8,6 +8,7 @@ class Character extends MovableObject {
   speed = 10;
   y = 0;
   damage = 10;
+  mana = 20;
 
   imagesRunElf = [
     "../img/elf/_PNG/3/Elf_03__RUN_001.png",
@@ -122,5 +123,12 @@ class Character extends MovableObject {
 
   jump() {
     this.speedY = 25;
+  }
+
+  collect(mana) {
+    this.mana += mana;
+    if (this.mana > 100) {
+      this.mana = 100;
+    }
   }
 }
