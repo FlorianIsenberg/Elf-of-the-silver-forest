@@ -6,6 +6,7 @@ class World {
   keyboard;
   cameraX = -100;
   statusBar = new Statusbar();
+  manaBar = new Manabar();
   fireball = [];
 
   constructor(canvas, keyboard) {
@@ -64,6 +65,7 @@ class World {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.ctx.translate(-this.cameraX, 0);
     this.addToMap(this.statusBar);
+    this.addToMap(this.manaBar);
     this.ctx.translate(this.cameraX, 0);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);

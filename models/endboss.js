@@ -46,6 +46,7 @@ class Endboss extends MovableObject {
   height = 196.875 * 3.5;
   width = 375 * 3.5;
   energy = 50;
+  damage = 30;
 
   constructor() {
     super().loadImage(this.imagesWalkinBoss[0]);
@@ -58,15 +59,6 @@ class Endboss extends MovableObject {
     // this.walkEndboss();
     this.animation();
   }
-
-  // walkEndboss() {
-  //   setInterval(() => {
-  //     this.moveLeft();
-  //   }, 1000 / 60);
-  //   setInterval(() => {
-  //     this.playAnimation(this.imagesWalkinBoss);
-  //   }, 1000 / 30);
-  // }
 
   animation() {
     const animationInterval = setInterval(() => {
@@ -103,11 +95,9 @@ class Endboss extends MovableObject {
             }
           }, 1000 / 20);
 
-          this.damage = 30;
-
           setTimeout(() => {
             clearInterval(animationAttackInterval);
-            this.damage = 8;
+
             console.log(this.damage);
           }, 2000);
         }, 4000);

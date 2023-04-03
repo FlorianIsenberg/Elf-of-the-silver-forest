@@ -28,7 +28,7 @@ window.addEventListener("keydown", (e) => {
   if (e.keyCode == 32) {
     keyboard.space = true;
   }
-  if (e.keyCode == 70) {
+  if (e.keyCode == 87) {
     keyboard.specialAttack = true;
   }
 });
@@ -49,7 +49,7 @@ window.addEventListener("keyup", (e) => {
   if (e.keyCode == 32) {
     keyboard.space = false;
   }
-  if (e.keyCode == 70) {
+  if (e.keyCode == 87) {
     keyboard.specialAttack = false;
   }
 });
