@@ -1,4 +1,11 @@
 class Fireball extends ThrowableObject {
+  offset = {
+    top: 200,
+    right: 150,
+    bottom: 200,
+    left: 230,
+  };
+
   imagesFireball = [
     "img/Fireballs/1.png",
     "img/Fireballs/2.png",
@@ -66,6 +73,7 @@ class Fireball extends ThrowableObject {
   }
 
   specialAttack() {
+    this.currentImage = 0;
     let attack = setInterval(() => {
       this.playAnimation(this.imagesFireball);
       if (this.isDead()) {
