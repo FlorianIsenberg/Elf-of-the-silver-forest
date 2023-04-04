@@ -26,38 +26,45 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-      this.checkthrowObjects();
+      this.checkThrowObjects();
     }, 100);
   }
 
   checkThrowObjects() {
-    if (this.keyboard.ENTER && this.elf.mana > 30 && !this.cooldown()) {
-      let attack = new Fireball(this.elf.x, this.elf.y);
-      this.throwableObject.push(attack);
-      this.elf.mana -= 30;
-      this.manaBar.setPercentage(this.elf.mana);
+    if (
+      this.keyboard.specialAttack &&
+      this.character.mana > 30 &&
+      !this.cooldown()
+    ) {
+      let attack = new Fireball(this.character.x, this.character.y);
+      this.fireball.push(attack);
+      this.character.mana -= 30;
+      this.manaBar.setPercentage(this.character.mana);
       this.lastAttack = new Date().getTime();
       setTimeout(() => {
-        this.throwableObject.splice(-1);
+        this.fireball.splice(-1);
       }, 1500);
     }
-    if (this.keyboard.SPACE && this.elf.mana >= 5 && !this.cooldown()) {
-      let attack = new Flash(this.elf.x, this.elf.y);
-      this.throwableObject.push(attack);
-      this.elf.mana -= 5;
-      this.manaBar.setPercentage(this.elf.mana);
+    if (
+      this.keyboard.specialAttack &&
+      this.character.mana >= 5 &&
+      !this.cooldown()
+    ) {
+      let attack = new Flash(this.character.x, this.character.y);
+      this.fireball.push(attack);
+      this.character.mana -= 5;
+      this.manaBar.setPercentage(this.character.mana);
       this.lastAttack = new Date().getTime();
       setTimeout(() => {
-        this.throwableObject.splice(-1);
+        this.fireball.splice(-1);
       }, 1000);
     }
   }
 
-  checkthrowObjects() {
-    if (this.keyboard.specialAttack) {
-      let fireball = new Fireball(this.character.x, this.character.y);
-      this.fireball.push(fireball);
-    }
+  cooldown() {
+    let timePassed = new Date().getTime() - this.lastAttack;
+    timePassed = timePassed / 1000;
+    return timePassed < 0.5;
   }
 
   checkCollisions() {

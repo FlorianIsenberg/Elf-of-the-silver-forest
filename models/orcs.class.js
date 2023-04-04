@@ -5,7 +5,7 @@ class Orc extends MovableObject {
     left: 150,
     bottom: 30,
   };
-  energy = 40;
+  energy = 20;
   damage = 8;
 
   imagesWalkingOrc = [

@@ -41,7 +41,7 @@ class Fireball extends MovableObject {
     "img/Fireballs/39.png",
   ];
   damage = 20;
-  energy = 16;
+  energy = 10;
 
   constructor(x, y) {
     super().loadImage(this.imagesFireball[0]);
@@ -68,6 +68,10 @@ class Fireball extends MovableObject {
   specialAttack() {
     let attack = setInterval(() => {
       this.playAnimation(this.imagesFireball);
+      if (this.isDead()) {
+        clearInterval(attack);
+        this.damage = 0;
+      }
     }, 1000 / 30);
     setTimeout(() => {
       clearInterval(attack);
