@@ -1,4 +1,4 @@
-class Fireball extends MovableObject {
+class Fireball extends ThrowableObject {
   imagesFireball = [
     "img/Fireballs/1.png",
     "img/Fireballs/2.png",

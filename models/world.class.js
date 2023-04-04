@@ -7,7 +7,8 @@ class World {
   cameraX = -100;
   statusBar = new Statusbar();
   manaBar = new Manabar();
-  fireball = [];
+  throwableObject = [];
+  lastAttack = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -37,26 +38,22 @@ class World {
       !this.cooldown()
     ) {
       let attack = new Fireball(this.character.x, this.character.y);
-      this.fireball.push(attack);
+      this.throwableObject.push(attack);
       this.character.mana -= 30;
       this.manaBar.setPercentage(this.character.mana);
       this.lastAttack = new Date().getTime();
       setTimeout(() => {
-        this.fireball.splice(-1);
+        this.throwableObject.splice(-1);
       }, 1500);
     }
-    if (
-      this.keyboard.specialAttack &&
-      this.character.mana >= 5 &&
-      !this.cooldown()
-    ) {
+    if (this.keyboard.attack && this.character.mana >= 5 && !this.cooldown()) {
       let attack = new Flash(this.character.x, this.character.y);
-      this.fireball.push(attack);
+      this.throwableObject.push(attack);
       this.character.mana -= 5;
       this.manaBar.setPercentage(this.character.mana);
       this.lastAttack = new Date().getTime();
       setTimeout(() => {
-        this.fireball.splice(-1);
+        this.throwableObject.splice(-1);
       }, 1000);
     }
   }
@@ -79,7 +76,7 @@ class World {
         this.character.hit(enemy);
         this.statusBar.setPercentage(this.character.energy);
       }
-      this.fireball.forEach((attack) => {
+      this.throwableObject.forEach((attack) => {
         if (enemy.isColliding(attack)) {
           enemy.hit(attack);
           attack.hit(enemy);
@@ -93,7 +90,7 @@ class World {
         this.character.hit(endboss);
         this.statusBar.setPercentage(this.character.energy);
       }
-      this.fireball.forEach((attack) => {
+      this.throwableObject.forEach((attack) => {
         if (endboss.isColliding(attack)) {
           endboss.hit(attack);
           attack.hit(endboss);
@@ -126,7 +123,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.endboss);
-    this.addObjectsToMap(this.fireball);
+    this.addObjectsToMap(this.throwableObject);
 
     this.ctx.translate(-this.cameraX, 0);
 

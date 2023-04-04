@@ -25,11 +25,15 @@ window.addEventListener("keydown", (e) => {
     keyboard.down = true;
   }
 
+  // if (e.keyCode == 32) {
+  //   keyboard.space = true;
+  // }
+
   if (e.keyCode == 32) {
-    keyboard.space = true;
-  }
-  if (e.keyCode == 87) {
     keyboard.specialAttack = true;
+  }
+  if (e.keyCode == 16) {
+    keyboard.attack = true;
   }
 });
 
@@ -46,10 +50,13 @@ window.addEventListener("keyup", (e) => {
   if (e.keyCode == 83) {
     keyboard.down = false;
   }
+  // if (e.keyCode == 32) {
+  //   keyboard.space = false;
+  // }
   if (e.keyCode == 32) {
-    keyboard.space = false;
-  }
-  if (e.keyCode == 87) {
     keyboard.specialAttack = false;
+  }
+  if (e.keyCode == 16) {
+    keyboard.attack = false;
   }
 });
