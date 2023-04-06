@@ -4,8 +4,17 @@ let keyboard = new Keyboard();
 
 function init() {
   canvas = document.getElementById("canvas");
+}
+
+function gameStart() {
+  initLevel();
   world = new World(canvas, keyboard);
-  console.log("my character", world.character);
+  setScreen();
+}
+
+function setScreen() {
+  document.getElementById("gameStartBg").classList.add("dNone");
+  document.getElementById("game").classList.remove("dNone");
 }
 
 window.addEventListener("keydown", (e) => {
@@ -24,10 +33,6 @@ window.addEventListener("keydown", (e) => {
   if (e.keyCode == 83) {
     keyboard.down = true;
   }
-
-  // if (e.keyCode == 32) {
-  //   keyboard.space = true;
-  // }
 
   if (e.keyCode == 32) {
     keyboard.specialAttack = true;
@@ -50,9 +55,7 @@ window.addEventListener("keyup", (e) => {
   if (e.keyCode == 83) {
     keyboard.down = false;
   }
-  // if (e.keyCode == 32) {
-  //   keyboard.space = false;
-  // }
+
   if (e.keyCode == 32) {
     keyboard.specialAttack = false;
   }

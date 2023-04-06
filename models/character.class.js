@@ -107,7 +107,7 @@ class Character extends MovableObject {
       if (this.isDead()) {
         clearInterval(animation);
         this.die();
-      } else if (this.isHurt()) {
+      } else if (this.isHurt() && this.lastDamage != 0) {
         this.playAnimation(this.imagesHurtElf);
       }
 
@@ -122,7 +122,7 @@ class Character extends MovableObject {
   }
 
   jump() {
-    this.speedY = 25;
+    this.speedY = 30;
   }
 
   collect(mana) {
