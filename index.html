@@ -27,15 +27,25 @@
     <title>Elf of the silver forest</title>
   </head>
   <body onload="init()">
-    <div class="dNone" id="game">
-      <h1>Elf of the silver forest</h1>
+    <header class="logo">
+      <img src="img/headerElves.png" alt="" />
+    </header>
+
+    <div class="dNone gamePlay" id="game">
       <canvas id="canvas" width="720" height="480"></canvas>
+      <div class="menu">
+        <div class="sound">
+          <img
+            src="img/volumeUp.png"
+            alt=""
+            id="soundIngame"
+            onclick="soundMute()"
+          />
+        </div>
+      </div>
     </div>
 
     <div class="startGameBg" id="gameStartBg">
-      <div class="logo">
-        <img src="img/Elves_of_the_silver_forest-removebg-preview.png" alt="" />
-      </div>
       <div class="text">
         <span
           >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam

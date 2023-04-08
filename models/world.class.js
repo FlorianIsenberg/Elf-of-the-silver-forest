@@ -13,10 +13,6 @@ class World {
   soundFlash = new Audio("");
   soundFireball = new Audio("");
 
-  soundtrack = new Audio(
-    "audio/cinematic-music-sketches-10-cinematic-cello-arpeggio-sketch-116187.mp3"
-  );
-
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -25,7 +21,6 @@ class World {
     this.setWorld();
     this.checkCollisions();
     this.run();
-    this.soundtrack.play();
   }
 
   setWorld() {

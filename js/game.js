@@ -1,6 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameSound = new Audio("audio/main.mp3");
+let soundMuted = false;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -10,11 +12,38 @@ function gameStart() {
   initLevel();
   world = new World(canvas, keyboard);
   setScreen();
+  gameSound.play();
+  gameSound.loop = true;
+  gameSound.volume = 0.025;
 }
 
 function setScreen() {
   document.getElementById("gameStartBg").classList.add("dNone");
   document.getElementById("game").classList.remove("dNone");
+}
+
+function soundMute() {
+  let soundIngame = document.getElementById("soundIngame");
+  if (soundMuted) {
+    soundMuted = false;
+    soundIngame.src = "img/volumeUp.png";
+    gameSound.muted = false;
+  } else {
+    soundMuted = true;
+    soundIngame.src = "img/mute.png";
+    gameSound.muted = true;
+  }
+  if (world) {
+    setWorldAudio();
+  }
+}
+
+function setWorldAudio() {
+  if (soundMuted) {
+    world.soundMuted = true;
+  } else {
+    world.soundMuted = false;
+  }
 }
 
 window.addEventListener("keydown", (e) => {
