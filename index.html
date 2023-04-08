@@ -46,7 +46,7 @@
     </div>
 
     <div class="startGameBg" id="gameStartBg">
-      <div class="text">
+      <div class="text" id="description">
         <span
           >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
           voluptas id quidem esse mollitia itaque rem. Commodi optio, aut,
@@ -56,9 +56,22 @@
       </div>
       <div class="btnSection">
         <button class="smallBtn">
-          <img src="img/sports_esports_FILL0_wght400_GRAD0_opsz48.png" alt="" />
+          <img
+            src="img/sports_esports_FILL0_wght400_GRAD0_opsz48.png"
+            alt=""
+            onclick="howToPlay()"
+          />
         </button>
         <button onclick="gameStart()" class="bigBtn">Start Game</button>
+      </div>
+    </div>
+
+    <div class="endscreen dNone" id="endscreen">
+      <div class="endscreenContent">
+        <span id="endscreenHeadline"></span>
+        <button class="btn" id="startGame" onclick="gameStart()">
+          RESTART!
+        </button>
       </div>
     </div>
   </body>
