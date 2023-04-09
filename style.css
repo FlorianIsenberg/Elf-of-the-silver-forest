@@ -71,6 +71,7 @@ canvas {
   text-align: center;
   text-shadow: -1px 0 #070606, 0 1px #070606, 1px 0 #070606, 0 -1px #070606;
   color: silver;
+  padding: 0 50px 0 50px;
 }
 
 .btnSection {
@@ -320,6 +321,64 @@ canvas {
   width: 30px;
 }
 
+@media (max-width: 600px) {
+  .walkLeft {
+    font-size: 21px;
+  }
+  .walkRight {
+    font-size: 21px;
+  }
+  .jump {
+    font-size: 21px;
+  }
+
+  .fire {
+    font-size: 21px;
+  }
+  .fire img {
+    width: 30px;
+  }
+  .flash {
+    font-size: 21px;
+  }
+
+  .flash img {
+    width: 30px;
+  }
+
+  .playBtn {
+    height: 30px;
+    width: 30px;
+    font-size: 21px;
+  }
+
+  .playBtnUp {
+    height: 30px;
+    width: 30px;
+    font-size: 21px;
+  }
+
+  .playBtnAttack {
+    width: 78px;
+    height: 30px;
+    font-size: 21px;
+  }
+
+  .arrowLeft {
+    width: 21px;
+  }
+  .arrowRight {
+    width: 21px;
+  }
+
+  .arrowUp {
+    width: 21px;
+  }
+  .text {
+    padding: 0 10px 0 10px;
+  }
+}
+
 @media (max-width: 500px) {
   body {
     font-size: 21px;
@@ -342,7 +401,7 @@ canvas {
 }
 
 @media only screen and (max-width: 720px) {
-  header img {
+  .logo img {
     display: none !important;
   }
   .gamePlay {
@@ -380,6 +439,7 @@ canvas {
   canvas {
     height: 100vh;
     border: none;
+    width: 100%;
   }
 
   .endscreen {

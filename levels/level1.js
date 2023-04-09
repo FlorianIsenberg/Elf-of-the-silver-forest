@@ -3,14 +3,14 @@ let level1;
 function initLevel() {
   level1 = new Level(
     [
-      // new Orc(),
-      // new Orc(),
-      // new Orc(),
-      // new Orc(),
-      // new Orc(),
-      // new Orc(),
-      // new Orc(),
-      // new Orc(),
+      new Orc(),
+      new Orc(),
+      new Orc(),
+      new Orc(),
+      new Orc(),
+      new Orc(),
+      new Orc(),
+      new Orc(),
       new Orc(),
     ],
 
