@@ -17,6 +17,7 @@ function gameStart() {
   gameSound.volume = 0.025;
   runGame();
   hideScreens();
+  mobileBtnEvents();
 }
 
 function setScreen() {
@@ -84,13 +85,13 @@ function createHowToPlay() {
   return `
   <div class="howToPlay">
       <div class="walkRight">
-          Walk Right: <button class="playBtn" id="btnRight">D</button> or <button class="playBtn" id="btnRight"><img  class="arrowRight" src="img/icons/arrow-204-256.png" class="rotateRight imgSmall" alt=""></button>
+          Walk Right: <button class="playBtn" id="btnRight">D</button> or <button class="playBtn" id="btnRight"><img  class="arrowRight" src="img/arrow-204-32.png" class="rotateRight imgSmall" alt=""></button>
       </div>
       <div class="walkLeft">
-          Walk Left: <button class="playBtn" id="btnRight">A</button> or <button class="playBtn" id="btnLeft"><img class="arrowLeft" src="img/icons/arrow-204-256.png" class="rotateLeft imgSmall" alt=""></button>
+          Walk Left: <button class="playBtn" id="btnRight">A</button> or <button class="playBtn" id="btnLeft"><img class="arrowLeft" src="img/arrow-204-32.png" class="rotateLeft imgSmall" alt=""></button>
       </div>
       <div class="jump">
-          Jump: <button class="playBtnUp" id="btnRight">W</button> or <button class="playBtn" id="btnJump"><img class="arrowUp" src="img/icons/arrow-204-256.png" class="imgSmall" alt=""></button>
+          Jump: <button class="playBtnUp" id="btnRight">W</button> or <button class="playBtn" id="btnJump"><img class="arrowUp" src="img/arrow-204-32.png" class="imgSmall" alt=""></button>
       </div>
   </div>
   <div class="howToPlay">
@@ -101,6 +102,69 @@ function createHowToPlay() {
           <img src="img/Fireballs/20.png" alt="">Fireball (Requires 30 Mana): <button class="playBtnAttack" id="btnRight">SPACE</button>
       </div>
   </div>`;
+}
+
+function mobileBtnEvents() {
+  document.getElementById("btnJump").addEventListener("touchstart", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.up = true;
+    }
+  });
+  document.getElementById("btnJump").addEventListener("touchend", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.up = false;
+    }
+  });
+  document.getElementById("btnRight").addEventListener("touchstart", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.right = true;
+    }
+  });
+  document.getElementById("btnRight").addEventListener("touchend", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.right = false;
+    }
+  });
+  document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.left = true;
+    }
+  });
+  document.getElementById("btnLeft").addEventListener("touchend", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.left = false;
+    }
+  });
+  document.getElementById("btnFlash").addEventListener("touchstart", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.attack = true;
+    }
+  });
+  document.getElementById("btnFlash").addEventListener("touchend", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.attack = false;
+    }
+  });
+  document.getElementById("btnFireball").addEventListener("touchstart", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.specialAttack = true;
+    }
+  });
+  document.getElementById("btnFireball").addEventListener("touchend", (e) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      keyboard.specialAttack = false;
+    }
+  });
 }
 
 window.addEventListener("keydown", (e) => {

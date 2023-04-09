@@ -64,8 +64,14 @@ canvas {
   gap: 15px;
 }
 
-/* .text {
-} */
+.text {
+  font-size: 28px;
+  font-family: "Special Elite";
+  font-weight: 500;
+  text-align: center;
+  text-shadow: -1px 0 #070606, 0 1px #070606, 1px 0 #070606, 0 -1px #070606;
+  color: silver;
+}
 
 .btnSection {
   display: flex;
@@ -221,10 +227,6 @@ canvas {
   width: 50px;
 }
 
-.startMenu {
-  display: flex;
-  gap: 15px;
-}
 .arrowUp {
   transform: rotate(180deg);
   width: 30px;
@@ -271,4 +273,122 @@ canvas {
   font-size: 30px;
   cursor: pointer;
   text-align: center;
+}
+
+.mobileControllerLeft {
+  display: none;
+  z-index: 10;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.mobileControllerRight {
+  display: none;
+  z-index: 10;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.flash {
+  font-family: "Special Elite";
+  font-size: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.flash img {
+  width: 50px;
+}
+
+.flashcastBtn {
+  width: 30px;
+}
+
+.firecastBtn {
+  width: 30px;
+}
+
+@media (max-width: 500px) {
+  body {
+    font-size: 21px;
+  }
+  .logo img {
+    width: 340px;
+  }
+}
+@media only screen and (max-width: 1368px) {
+  .logo {
+    width: 90%;
+  }
+
+  .mobileControllerLeft {
+    display: flex;
+  }
+  .mobileControllerRight {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  header img {
+    display: none !important;
+  }
+  .gamePlay {
+    width: 100%;
+  }
+  canvas {
+    width: 100%;
+  }
+  .menu {
+    width: 100%;
+  }
+  .endscreen {
+    width: 100%;
+  }
+
+  .endscreenContent {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-height: 620px) {
+  .logo {
+    display: none;
+  }
+
+  .text {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  .gamePlay {
+    height: 100vh;
+  }
+  canvas {
+    height: 100vh;
+    border: none;
+  }
+
+  .endscreen {
+    height: 100vh;
+  }
+  .endscreenContent {
+    height: 100vh;
+  }
+  .btn {
+    bottom: 5px;
+  }
 }
