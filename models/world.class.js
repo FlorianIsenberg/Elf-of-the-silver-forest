@@ -124,8 +124,8 @@ class World {
     this.ctx.translate(this.cameraX, 0);
     this.addObjectsToMap(this.level.tank);
     this.addToMap(this.character);
-    this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.endboss);
+    this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObject);
 
     this.ctx.translate(-this.cameraX, 0);
@@ -149,7 +149,7 @@ class World {
 
     mo.draw(this.ctx);
 
-    mo.drawFrame(this.ctx);
+    // mo.drawFrame(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);

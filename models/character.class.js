@@ -11,28 +11,28 @@ class Character extends MovableObject {
   mana = 20;
 
   imagesRunElf = [
-    "../img/elf/_PNG/3/Elf_03__RUN_001.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_002.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_003.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_004.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_005.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_006.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_007.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_008.png",
-    "../img/elf/_PNG/3/Elf_03__RUN_009.png",
+    "img/elf/_PNG/3/Elf_03__RUN_001.png",
+    "img/elf/_PNG/3/Elf_03__RUN_002.png",
+    "img/elf/_PNG/3/Elf_03__RUN_003.png",
+    "img/elf/_PNG/3/Elf_03__RUN_004.png",
+    "img/elf/_PNG/3/Elf_03__RUN_005.png",
+    "img/elf/_PNG/3/Elf_03__RUN_006.png",
+    "img/elf/_PNG/3/Elf_03__RUN_007.png",
+    "img/elf/_PNG/3/Elf_03__RUN_008.png",
+    "img/elf/_PNG/3/Elf_03__RUN_009.png",
   ];
 
   imagesJumpingElf = [
-    "../img/elf/_PNG/3/Elf_03__JUMP_000.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_001.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_002.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_003.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_004.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_005.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_006.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_007.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_008.png",
-    "../img/elf/_PNG/3/Elf_03__JUMP_009.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_000.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_001.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_002.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_003.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_004.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_005.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_006.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_007.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_008.png",
+    "img/elf/_PNG/3/Elf_03__JUMP_009.png",
   ];
 
   imagesIdleElf = [
@@ -87,17 +87,18 @@ class Character extends MovableObject {
 
   walkElf() {
     setInterval(() => {
-      if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
-        this.moveRight();
-      }
-      if (this.world.keyboard.left && this.x > -720) {
-        this.moveLeft();
-      }
+      if (!this.isDead()) {
+        if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
+          this.moveRight();
+        }
+        if (this.world.keyboard.left && this.x > -720) {
+          this.moveLeft();
+        }
 
-      if (this.world.keyboard.up && !this.isAboveGround()) {
-        this.jump();
+        if (this.world.keyboard.up && !this.isAboveGround()) {
+          this.jump();
+        }
       }
-
       this.world.cameraX = -this.x;
     }, 1000 / 20);
 
